@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="কুয়াশায় ঢাকা শহর">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfc6bd"/>
+      <stop offset="1" stop-color="#e9e3da"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <g fill="#8a8178" opacity="0.7">
+    <rect x="180" y="420" width="180" height="480"/>
+    <rect x="420" y="320" width="220" height="580"/>
+    <rect x="700" y="460" width="160" height="440"/>
+    <rect x="920" y="360" width="240" height="540"/>
+    <rect x="1220" y="440" width="200" height="460"/>
+  </g>
+  <rect y="640" width="1600" height="360" fill="#d9d2c8" opacity="0.55"/>
+  <rect y="800" width="1600" height="200" fill="#cfc6bd" opacity="0.7"/>
+</svg>

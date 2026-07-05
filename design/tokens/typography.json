@@ -1,0 +1,25 @@
+{
+  "$comment": "SINGLE SOURCE OF TRUTH for typography tokens. LOCKED per FRONTEND_DESIGN_PLAN.md Section 2.2. Two families only (serif display + humanist sans body/UI); UI/meta is the body sans at smaller size, NOT a third family.",
+  "families": {
+    "display": {
+      "$comment": "Section 2.2: literary serif with Bengali support + Latin literary serif fallback. Self-hosted via app/fonts.css (@font-face, swap). The '… Fallback' family is a metric-adjusted face (app/fonts.css) placed first in fallback[] so font swap causes no CLS (Section 1.3) — the next/font technique done in CSS.",
+      "bengali": ["Noto Serif Bengali"],
+      "latin": ["Source Serif 4", "Lora"],
+      "fallback": ["Noto Serif Bengali Fallback", "Georgia", "serif"]
+    },
+    "body": {
+      "$comment": "Section 2.2: humanist sans with strong Bengali hinting + Inter for Latin. Workhorse face for body + UI + meta. '… Fallback' is the CLS-safe metric-adjusted fallback (app/fonts.css).",
+      "bengali": ["Noto Sans Bengali", "Hind Siliguri"],
+      "latin": ["Inter"],
+      "fallback": ["Noto Sans Bengali Fallback", "system-ui", "sans-serif"]
+    }
+  },
+  "scale": {
+    "text-display":    { "size": "clamp(1.75rem, 4vw, 2.5rem)",       "lineHeight": "1.25", "family": "display", "use": "Article H1 / post title on its own page" },
+    "text-card-title": { "size": "clamp(1.125rem, 2.5vw, 1.375rem)",  "lineHeight": "1.3",  "family": "display", "use": "Post title inside an index card" },
+    "text-h2":         { "size": "1.375rem",                          "lineHeight": "1.35", "family": "display", "use": "In-article section headings (১) প্রেম রাজনীতি pattern)" },
+    "text-body":       { "size": "1.0625rem",                         "lineHeight": "1.75", "family": "body",    "use": "Article paragraphs — generous line-height for Bengali" },
+    "text-meta":       { "size": "0.875rem",                          "lineHeight": "1.4",  "family": "body",    "use": "Dates, tags, byline" },
+    "text-caption":    { "size": "0.75rem",                           "lineHeight": "1.4",  "family": "body",    "use": "Footnotes, image captions" }
+  }
+}

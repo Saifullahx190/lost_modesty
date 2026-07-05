@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="অন্ধকার জানালার পর্দা">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a1726"/>
+      <stop offset="1" stop-color="#0b0b0c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#g)"/>
+  <rect x="980" y="120" width="420" height="760" fill="#0e1018" stroke="#2a2438" stroke-width="6"/>
+  <line x1="1190" y1="120" x2="1190" y2="880" stroke="#2a2438" stroke-width="6"/>
+  <line x1="980" y1="500" x2="1400" y2="500" stroke="#2a2438" stroke-width="6"/>
+  <circle cx="300" cy="260" r="70" fill="#E3B24F" opacity="0.85"/>
+  <path d="M120 880 q380 -120 1360 -40 v160 H120 Z" fill="#07070a"/>
+</svg>

@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+
+# next.js / build output
+.next/
+out/
+build/
+storybook-static/
+.vercel/
+
+# typescript / next generated
+*.tsbuildinfo
+next-env.d.ts
+
+# logs
+*.log
+npm-debug.log*
+
+# env files (keep the committed template)
+.env*
+!.env.example
+
+# generated build artifacts (regenerated from the token source of truth)
+app/tokens.generated.css
+data/redirect-map.json
+
+# runtime editor image uploads (recreated on demand by lib/content/uploads.ts)
+public/uploads/
+
+# test / coverage output
+coverage/
+
+# local tooling & editors
+.claude/settings.local.json
+.idea/
+*.pem
+.DS_Store
+Thumbs.db

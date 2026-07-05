@@ -1,0 +1,31 @@
+{
+  "$comment": "SINGLE SOURCE OF TRUTH for spacing + layout tokens. LOCKED per FRONTEND_DESIGN_PLAN.md Section 2.3 and 2.5. 4px-based scale mapped to Tailwind defaults — no one-off magic-number margins outside this scale (§2.3).",
+  "scale": {
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "6": "24px",
+    "8": "32px",
+    "12": "48px",
+    "16": "64px",
+    "24": "96px"
+  },
+  "semantic": {
+    "card-padding": ["16px", "24px"],
+    "index-section-rhythm": ["48px", "64px"],
+    "article-paragraph-gap": "24px"
+  },
+  "breakpoints": {
+    "$comment": "Section 2.5. Names locked. xs is implicit base (mobile-first).",
+    "md": "640px",
+    "lg": "1024px",
+    "xl": "1440px"
+  },
+  "contentWidth": {
+    "$comment": "Section 2.5: article body capped ~680-720px (68-72 Bengali chars/line); index grid container ~1024px. Wide screens get margin, not longer lines.",
+    "article": "720px",
+    "index": "1024px"
+  },
+  "coverAspectRatio": "16 / 10"
+}

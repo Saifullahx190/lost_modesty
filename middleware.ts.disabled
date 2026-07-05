@@ -1,0 +1,59 @@
+import { NextRequest, NextResponse } from "next/server";
+import { OLD_ORIGIN } from "./migration.config.mjs";
+import { resolveTarget } from "./lib/migration.mjs";
+
+// Strangler-fig edge router (REBUILD §2). Decides per request: serve NEW (pass
+// through to this Next app) or OLD (rewrite to the live platform origin). Phase 0:
+// resolveTarget returns OLD for everything, so this is a transparent pass-through
+// to the live site — readers see zero change (CP0).
+
+const VISITOR_COOKIE = "lm_vid";
+
+export function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+
+  // Stable visitor key for deterministic canary bucketing (set once if absent).
+  let vid = req.cookies.get(VISITOR_COOKIE)?.value;
+  const needsCookie = !vid;
+  if (!vid) {
+    // Derive a stable-ish key without Math.random in middleware hot path: hash of
+    // UA + accept-language is sufficient for bucket stability pre-cookie; the
+    // cookie then pins it.
+    vid = `${req.headers.get("user-agent") ?? ""}|${req.headers.get("accept-language") ?? ""}`;
+  }
+
+  const { target, rule, bucket } = resolveTarget(pathname, vid);
+
+  const res =
+    target === "OLD"
+      ? proxyToOld(req, pathname)
+      : NextResponse.next();
+
+  // Observability hooks (REBUILD §3D): per-route target + bucket for diff/canary
+  // dashboards. Replace with real telemetry sink in infra.
+  res.headers.set("x-lm-route", rule.id);
+  res.headers.set("x-lm-target", target);
+  res.headers.set("x-lm-bucket", String(bucket));
+
+  if (needsCookie) {
+    res.cookies.set(VISITOR_COOKIE, vid, {
+      path: "/",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24 * 365,
+    });
+  }
+  return res;
+}
+
+function proxyToOld(req: NextRequest, pathname: string): NextResponse {
+  // Rewrite to the OLD origin, preserving path + query exactly (zero URL change,
+  // REBUILD §3A/§3B "identical paths"). NextResponse.rewrite proxies transparently
+  // — the reader's URL bar is unchanged and the OLD origin's response is served.
+  const url = new URL(pathname + req.nextUrl.search, OLD_ORIGIN);
+  return NextResponse.rewrite(url);
+}
+
+export const config = {
+  // Exclude Next internals + static assets from the switch.
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+};

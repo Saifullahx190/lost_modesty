@@ -1,0 +1,47 @@
+{
+  "$comment": "SINGLE SOURCE OF TRUTH for color tokens. Base values per FRONTEND_DESIGN_PLAN.md Section 2.1; deviations from that table are logged in design/CHANGELOG.md (B1 resolution). Names are locked API per Section 4.2 — renaming is a breaking change requiring a CHANGELOG entry. Consumed by tailwind.config.ts AND (per plan) Figma via Tokens Studio. Every pairing is contrast-verified by scripts/contrast-check.mjs before merge.",
+  "light": {
+    "color-bg": "#FFFFFF",
+    "color-bg-subtle": "#F7F6F4",
+    "color-text": "#171717",
+    "color-text-muted": "#6B6B6B",
+    "color-border": "#E7E5E2",
+    "color-accent": "#D9A02B",
+    "color-link": "#8B6914",
+    "color-accent-secondary": "#BC4F30",
+    "color-focus-ring": "#1B6FE0",
+    "color-danger": "#C0362C",
+    "color-success": "#2E7D4F"
+  },
+  "dark": {
+    "color-bg": "#0B0B0C",
+    "color-bg-subtle": "#161616",
+    "color-text": "#EDEDED",
+    "color-text-muted": "#9A9A9A",
+    "color-border": "#262626",
+    "color-accent": "#E3B24F",
+    "color-link": "#E3B24F",
+    "color-accent-secondary": "#D97A5C",
+    "color-focus-ring": "#5EA1FF",
+    "color-danger": "#E5645A",
+    "color-success": "#52B07A"
+  },
+  "contrastContract": {
+    "$comment": "Enforced pairings (gate fails below these). min 4.5 = text (incl. link + tag-label text); min 3.0 = non-text UI indicator (focus ring) per WCAG 1.4.11. B1: color-accent (marigold) is NOT graded here — see decorativeExempt; it is a logotype/decorative mark only. Text/link/active-state uses point at color-link, never color-accent.",
+    "pairs": [
+      { "fg": "color-text", "bg": "color-bg", "min": 4.5 },
+      { "fg": "color-text", "bg": "color-bg-subtle", "min": 4.5 },
+      { "fg": "color-text-muted", "bg": "color-bg", "min": 4.5 },
+      { "fg": "color-link", "bg": "color-bg", "min": 4.5 },
+      { "fg": "color-accent-secondary", "bg": "color-bg", "min": 4.5 },
+      { "fg": "color-focus-ring", "bg": "color-bg", "min": 3.0 },
+      { "fg": "color-danger", "bg": "color-bg", "min": 4.5 },
+      { "fg": "color-success", "bg": "color-bg", "min": 4.5 }
+    ],
+    "decorativeExempt": {
+      "$comment": "color-accent (marigold) is a BRAND/LOGOTYPE + decorative mark only (logo lockup, marigold motif in favicon/loading/empty states, decorative fills/rules) — never running text, never a meaningful UI control. WCAG 2.1 1.4.3 exempts logotypes and 1.4.11 exempts purely decorative elements, so it is INTENTIONALLY not graded as text (it measures 2.33:1 light on white). Any link, body-text, or active-state use MUST resolve to color-link (or color-text), not color-accent.",
+      "tokens": ["color-accent"],
+      "against": "color-bg"
+    }
+  }
+}

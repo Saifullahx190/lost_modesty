@@ -1,0 +1,15 @@
+# SAMPLE inventory — demonstrates the redirect-audit harness end to end.
+# The REAL data/url-inventory.csv does NOT exist yet: it must be produced in
+# Phase 0 §3A from a live crawl (Screaming Frog/Sitebulb) + GSC export + 90-day
+# server logs. Until then, the audit runs against this sample + the test fixtures.
+# Columns: old_url,new_url,expected_status,source
+old_url,new_url,expected_status,source
+/,/,200,crawl
+/blog,/blog,200,crawl
+/john-doe/my-first-post,/john-doe/my-first-post,200,gsc
+/category/love,/category/love,200,gsc
+/tag/poetry,/tag/poetry,200,crawl
+/author/john-doe,/author/john-doe,200,gsc
+/2019/05/an-old-dated-permalink,/john-doe/an-old-dated-permalink,301,logs
+/john-doe/an-old-dated-permalink,/john-doe/an-old-dated-permalink,200,crawl
+/feed,/feed,200,crawl

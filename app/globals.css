@@ -1,0 +1,59 @@
+@import "./tokens.generated.css";
+@import "./fonts.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base layer — minimal Phase 0 foundation. Component styling arrives with each
+   component's M-milestone, not here. */
+@layer base {
+  html {
+    /* lang="bn" is set in layout.tsx; this tunes Bengali long-form reading. */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: theme("fontFamily.body");
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-lh);
+  }
+
+  /* High-contrast, always-visible focus ring — part of the design system, not a
+     QA afterthought (FRONTEND §1.3 keyboard navigation). Distinct focus color so
+     focus is never confused with a link (§2.1 --color-focus-ring rationale). */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Reduced motion: every transition collapses to an instant state (§1.3, §4.3). */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Offline banner slide-in (FRONTEND §3.4) — applied via `motion-safe:animate-…`,
+   so reduced-motion users get the banner with no movement (double-guarded by the
+   media query above). */
+@keyframes offline-in {
+  from {
+    transform: translateY(0.5rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "lostmodesty-rebuild",
+  "version": "0.0.0-phase0",
+  "private": true,
+  "description": "লস্টমডেস্টি (Lost Modesty) blog rebuild — Next.js strangler-fig new app. Phase 0 scaffold.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test": "node --test tests/redirect-audit.test.mjs tests/migration.test.mjs tests/parity.test.mjs tests/editor.test.mjs tests/activity.test.mjs tests/notifications.test.mjs",
+    "tokens:contrast": "node scripts/contrast-check.mjs",
+    "redirect:build": "node scripts/build-redirect-map.mjs",
+    "redirect:audit": "node --test tests/redirect-audit.test.mjs",
+    "shadow:diff": "node scripts/shadow-diff.mjs",
+    "parity": "node scripts/parity-check.mjs",
+    "baseline:capture": "node scripts/capture-baseline.mjs",
+    "cwv:baseline": "node scripts/cwv-baseline.mjs",
+    "preflight": "npm run tokens:contrast && npm run redirect:build && npm run redirect:audit"
+  },
+  "dependencies": {
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.0"
+  },
+  "comment:devDependencies-deferred": "Storybook, @storybook/*, playwright, lighthouse, @axe-core/* are M0/access-gated tooling — add at install time per scripts that need them (capture-baseline=playwright, cwv-baseline=lighthouse, storybook=design system). Kept out of the base manifest until their step runs, to keep the Phase 0 install light."
+}
