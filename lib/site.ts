@@ -20,16 +20,19 @@ export const SITE = {
 
 export interface NavItem {
   href: string;
+  /** Bengali label (default UI language). */
   label: string;
+  /** English label for the chrome-language toggle (lib/i18n). */
+  labelEn: string;
 }
 
 /** Primary nav — labels/order mirror the live site header reference
  *  (FRONTEND §2.4 header: logo + a few links + theme toggle). */
 export const NAV: NavItem[] = [
-  { href: "/blog", label: "ব্লগ" },
-  { href: "/topics", label: "তালিকাসমূহ" },
-  { href: "/our-work", label: "আমাদের কাজ" },
-  { href: "/about", label: "আমাদের সম্পর্কে" },
+  { href: "/blog", label: "ব্লগ", labelEn: "Blog" },
+  { href: "/topics", label: "তালিকাসমূহ", labelEn: "Topics" },
+  { href: "/our-work", label: "আমাদের কাজ", labelEn: "Our Work" },
+  { href: "/about", label: "আমাদের সম্পর্কে", labelEn: "About" },
 ];
 
 export const SOCIAL = {

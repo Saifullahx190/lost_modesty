@@ -2,9 +2,11 @@ import Link from "next/link";
 import { NAV } from "@/lib/site";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageToggle } from "./LanguageToggle";
 import { MobileNav } from "./MobileNav";
 import { UserMenu } from "./UserMenu";
 import { NotificationBell } from "./NotificationBell";
+import { T } from "./T";
 
 // Site header (FRONTEND §2.4): logo lockup left; desktop = inline nav + theme
 // toggle right; mobile = theme toggle + hamburger. Information architecture is
@@ -25,7 +27,7 @@ export function Header() {
                     href={item.href}
                     className="rounded-md px-3 py-2 text-meta text-text transition-colors hover:bg-bg-subtle"
                   >
-                    {item.label}
+                    <T bn={item.label} en={item.labelEn} />
                   </Link>
                 </li>
               ))}
@@ -33,6 +35,7 @@ export function Header() {
           </nav>
           <NotificationBell />
           <UserMenu />
+          <LanguageToggle />
           <ThemeToggle />
           <MobileNav items={NAV} />
         </div>

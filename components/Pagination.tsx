@@ -1,4 +1,6 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
+import { T } from "./T";
 
 // Pagination (FRONTEND §2.4 / §3.3): lightweight text-only "Previous / N of M /
 // Next", keeping the live site's minimal pattern. Preserves the `?page=N` scheme
@@ -22,11 +24,23 @@ export function Pagination({
 
   return (
     <nav aria-label="পৃষ্ঠা" className="mt-12 flex items-center justify-between gap-4 text-meta">
-      <Edge href={href(page - 1)} enabled={hasPrev} rel="prev" label="আগের" arrow="←" />
+      <Edge
+        href={href(page - 1)}
+        enabled={hasPrev}
+        rel="prev"
+        label={<T bn="আগের" en="Previous" />}
+        arrow="←"
+      />
       <span className="text-muted" aria-current="page">
         {page} / {totalPages}
       </span>
-      <Edge href={href(page + 1)} enabled={hasNext} rel="next" label="পরের" arrow="→" />
+      <Edge
+        href={href(page + 1)}
+        enabled={hasNext}
+        rel="next"
+        label={<T bn="পরের" en="Next" />}
+        arrow="→"
+      />
     </nav>
   );
 }
@@ -41,10 +55,19 @@ function Edge({
   href: string;
   enabled: boolean;
   rel: "prev" | "next";
-  label: string;
+  label: ReactNode;
   arrow: string;
 }) {
-  const content = rel === "prev" ? `${arrow} ${label}` : `${label} ${arrow}`;
+  const content =
+    rel === "prev" ? (
+      <>
+        {arrow} {label}
+      </>
+    ) : (
+      <>
+        {label} {arrow}
+      </>
+    );
   if (!enabled) {
     return (
       <span aria-disabled="true" className="cursor-not-allowed text-muted/50">

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { readUiHint } from "@/lib/auth/client";
 import { getUnreadCount } from "@/lib/notifications/actions";
+import { useT } from "@/lib/i18n/useLang";
 
 const bn = (n: number) => new Intl.NumberFormat("bn-BD").format(n);
 
@@ -15,6 +16,7 @@ const bn = (n: number) => new Intl.NumberFormat("bn-BD").format(n);
 export function NotificationBell() {
   const [show, setShow] = useState(false);
   const [count, setCount] = useState(0);
+  const t = useT();
 
   useEffect(() => {
     if (!readUiHint()) return; // logged-out → nothing to show
@@ -30,7 +32,10 @@ export function NotificationBell() {
 
   if (!show) return null;
 
-  const label = count > 0 ? `বিজ্ঞপ্তি — ${bn(count)}টি নতুন` : "বিজ্ঞপ্তি";
+  const label =
+    count > 0
+      ? t(`বিজ্ঞপ্তি — ${bn(count)}টি নতুন`, `Notifications — ${count} new`)
+      : t("বিজ্ঞপ্তি", "Notifications");
   return (
     <Link
       href="/notifications"

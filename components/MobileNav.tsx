@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { NavItem } from "@/lib/site";
+import { useT } from "@/lib/i18n/useLang";
+import { T } from "./T";
 
 // Mobile hamburger disclosure (FRONTEND §2.4 header mobile open/closed). Headless
 // behaviour hand-rolled minimally: Escape closes, focus returns to the trigger,
@@ -11,6 +13,7 @@ import type { NavItem } from "@/lib/site";
 export function MobileNav({ items }: { items: NavItem[] }) {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const t = useT();
 
   useEffect(() => {
     if (!open) return;
@@ -31,7 +34,7 @@ export function MobileNav({ items }: { items: NavItem[] }) {
         type="button"
         aria-expanded={open}
         aria-controls="mobile-nav-panel"
-        aria-label={open ? "মেনু বন্ধ করুন" : "মেনু খুলুন"}
+        aria-label={open ? t("মেনু বন্ধ করুন", "Close menu") : t("মেনু খুলুন", "Open menu")}
         onClick={() => setOpen((v) => !v)}
         className="grid h-11 w-11 place-items-center rounded-md text-text transition-colors hover:bg-bg-subtle"
       >
@@ -43,7 +46,7 @@ export function MobileNav({ items }: { items: NavItem[] }) {
           id="mobile-nav-panel"
           className="absolute inset-x-0 top-full z-20 border-b border-border bg-bg"
         >
-          <nav aria-label="প্রধান মেনু" className="mx-auto max-w-index px-4 py-2">
+          <nav aria-label={t("প্রধান মেনু", "Main menu")} className="mx-auto max-w-index px-4 py-2">
             <ul className="flex flex-col">
               {items.map((item) => (
                 <li key={item.href} className="border-b border-border last:border-0">
@@ -52,7 +55,7 @@ export function MobileNav({ items }: { items: NavItem[] }) {
                     onClick={() => setOpen(false)}
                     className="block py-3 text-body text-text"
                   >
-                    {item.label}
+                    <T bn={item.label} en={item.labelEn} />
                   </Link>
                 </li>
               ))}

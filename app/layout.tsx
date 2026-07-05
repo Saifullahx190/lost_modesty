@@ -5,6 +5,8 @@ import { Footer } from "@/components/Footer";
 import { OfflineBanner } from "@/components/OfflineBanner";
 import { SITE } from "@/lib/site";
 import { metadataBase } from "@/lib/seo";
+import { NO_FLASH_LANG } from "@/lib/i18n/config";
+import { T } from "@/components/T";
 
 // Site-wide <html lang="bn"> so screen readers select the Bengali voice (FRONTEND
 // §1.3 language attributes). Per-element lang overrides are applied where English
@@ -38,6 +40,7 @@ export default function RootLayout({
     <html lang="bn" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: noFlashTheme }} />
+        <script dangerouslySetInnerHTML={{ __html: NO_FLASH_LANG }} />
       </head>
       <body className="flex min-h-screen flex-col">
         {/* Skip link — keyboard users jump straight to content (§1.3 keyboard nav). */}
@@ -45,7 +48,7 @@ export default function RootLayout({
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-bg focus:px-4 focus:py-2 focus:text-text focus:outline focus:outline-2 focus:outline-focus"
         >
-          মূল লেখায় যান
+          <T bn="মূল লেখায় যান" en="Skip to content" />
         </a>
         <Header />
         <main id="main" className="flex-1">

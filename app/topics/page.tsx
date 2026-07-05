@@ -9,6 +9,7 @@ import {
 } from "@/lib/content/repo";
 import { pageMetadata, breadcrumbLd } from "@/lib/seo";
 import { SITE } from "@/lib/site";
+import { T } from "@/components/T";
 
 // Topics index — "তালিকাসমূহ" nav destination (FRONTEND §3.1 internal-link hubs).
 // Layout mirrors the live site's "সব বিষয়" page (a wrapping grid of counted
@@ -61,8 +62,15 @@ export default function TopicsPage() {
       />
       <div className="mx-auto max-w-index px-4 py-10">
         <div className="mb-10 flex flex-col gap-4">
-          <h1 className="font-display text-display text-text">{TITLE}</h1>
-          <p className="max-w-article text-body text-muted">{INTRO}</p>
+          <h1 className="font-display text-display text-text">
+            <T bn={TITLE} en="All Topics" />
+          </h1>
+          <p className="max-w-article text-body text-muted">
+            <T
+              bn={INTRO}
+              en="The subjects we write about — start reading wherever you like."
+            />
+          </p>
         </div>
 
         <ul className="flex flex-wrap gap-3">

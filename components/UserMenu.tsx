@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { readUiHint, type UiHint } from "@/lib/auth/client";
+import { useT } from "@/lib/i18n/useLang";
 
 // Header account entry (Phase 2). One icon link: logged-out → /login,
 // logged-in → /dashboard. Session state comes from the JS-readable hint cookie
@@ -14,12 +15,13 @@ import { readUiHint, type UiHint } from "@/lib/auth/client";
 // ≥44×44px tap target (§1.3), same hit-area idiom as ThemeToggle/MobileNav.
 export function UserMenu() {
   const [hint, setHint] = useState<UiHint | null>(null);
+  const t = useT();
 
   useEffect(() => {
     setHint(readUiHint());
   }, []);
 
-  const label = hint ? `ড্যাশবোর্ড — ${hint.n}` : "প্রবেশ করুন";
+  const label = hint ? `${t("ড্যাশবোর্ড", "Dashboard")} — ${hint.n}` : t("প্রবেশ করুন", "Sign in");
 
   return (
     <Link

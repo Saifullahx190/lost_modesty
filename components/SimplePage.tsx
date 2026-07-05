@@ -9,8 +9,8 @@ export function SimplePage({
   lede,
   children,
 }: {
-  title: string;
-  lede?: string;
+  title: ReactNode;
+  lede?: ReactNode;
   children?: ReactNode;
 }) {
   return (

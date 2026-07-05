@@ -5,6 +5,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Chrome i18n (lib/i18n) — <T bn en/> renders BOTH languages; this shows exactly
+   one based on <html data-lang>, set before paint by the no-flash script so there
+   is no flash and no forced dynamic rendering. Default (no attribute) = Bengali.
+   Only interface labels use this — blog content is never wrapped in <T>. */
+[data-i18n="en"] {
+  display: none;
+}
+html[data-lang="en"] [data-i18n="en"] {
+  display: inline;
+}
+html[data-lang="en"] [data-i18n="bn"] {
+  display: none;
+}
+
 /* Base layer — minimal Phase 0 foundation. Component styling arrives with each
    component's M-milestone, not here. */
 @layer base {

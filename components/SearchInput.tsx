@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useDeferredValue, useId, useMemo, useState } from "react";
 import type { SearchRecord } from "@/lib/content/types";
+import { useT } from "@/lib/i18n/useLang";
 
 // Client-side instant search (FRONTEND §3.3): filters an already-shipped lightweight
 // index (title/tags/excerpt) as you type — ~300 posts is small enough to inline at
@@ -17,6 +18,7 @@ export function SearchInput({ index }: { index: SearchRecord[] }) {
   const deferred = useDeferredValue(query);
   const inputId = useId();
   const statusId = `${inputId}-status`;
+  const t = useT();
 
   const q = deferred.trim().toLowerCase();
   const results = useMemo(() => {
@@ -35,7 +37,7 @@ export function SearchInput({ index }: { index: SearchRecord[] }) {
   return (
     <div className="relative">
       <label htmlFor={inputId} className="sr-only">
-        লেখা খুঁজুন
+        {t("লেখা খুঁজুন", "Search writing")}
       </label>
       <div className="flex items-center gap-2 rounded-md border border-border bg-bg-subtle px-3 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-focus">
         <SearchIcon />
@@ -44,7 +46,7 @@ export function SearchInput({ index }: { index: SearchRecord[] }) {
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="শিরোনাম বা ট্যাগ দিয়ে খুঁজুন…"
+          placeholder={t("শিরোনাম বা ট্যাগ দিয়ে খুঁজুন…", "Search by title or tag…")}
           aria-describedby={statusId}
           autoComplete="off"
           className="min-h-[44px] w-full bg-transparent py-2 text-body text-text outline-none placeholder:text-muted"
@@ -53,14 +55,16 @@ export function SearchInput({ index }: { index: SearchRecord[] }) {
 
       {/* aria-live so result count is announced as the reader types (§1.3 forms). */}
       <p id={statusId} role="status" aria-live="polite" className="sr-only">
-        {active ? `${results.length} টি ফলাফল` : ""}
+        {active ? t(`${results.length} টি ফলাফল`, `${results.length} results`) : ""}
       </p>
 
       {active && (
         <div className="mt-2 rounded-md border border-border bg-bg p-2">
           {results.length > 0 ? (
             <>
-              <p className="px-2 py-1 text-caption text-muted">{results.length} টি ফলাফল</p>
+              <p className="px-2 py-1 text-caption text-muted">
+                {t(`${results.length} টি ফলাফল`, `${results.length} results`)}
+              </p>
               <ul>
                 {results.map((r) => (
                   <li key={r.href}>
@@ -76,9 +80,9 @@ export function SearchInput({ index }: { index: SearchRecord[] }) {
             </>
           ) : (
             <div className="px-2 py-3 text-meta text-muted">
-              <p className="text-text">কিছু পাওয়া যায়নি।</p>
+              <p className="text-text">{t("কিছু পাওয়া যায়নি।", "Nothing found.")}</p>
               <p className="mt-1">
-                বিষয় ধরে দেখুন —{" "}
+                {t("বিষয় ধরে দেখুন — ", "Browse by topic — ")}
                 <Link href="/category/golpo" className="text-link hover:underline">
                   গল্প
                 </Link>
@@ -86,11 +90,11 @@ export function SearchInput({ index }: { index: SearchRecord[] }) {
                 <Link href="/category/probondho" className="text-link hover:underline">
                   প্রবন্ধ
                 </Link>
-                {" বা "}
+                {t(" বা ", " or ")}
                 <Link href="/category/love" className="text-link hover:underline">
                   প্রেম
                 </Link>
-                ।
+                {t("।", ".")}
               </p>
             </div>
           )}

@@ -1,8 +1,10 @@
+import type { ReactNode } from "react";
 import type { Post, SearchRecord } from "@/lib/content/types";
 import { PostGrid } from "./PostGrid";
 import { Pagination } from "./Pagination";
 import { SearchInput } from "./SearchInput";
 import { MarigoldMark } from "./Logo";
+import { T } from "./T";
 
 // Shared index/archive view (FRONTEND §3.1): search-first header, card grid, then
 // pagination. Reused by the home index, category, tag, and author-archive pages so
@@ -18,8 +20,8 @@ export function IndexView({
   searchIndex,
   showSearch = false,
 }: {
-  title: string;
-  intro?: string;
+  title: ReactNode;
+  intro?: ReactNode;
   posts: Post[];
   basePath: string;
   page: number;
@@ -52,7 +54,9 @@ function Empty() {
   return (
     <div className="flex flex-col items-center gap-3 py-16 text-center">
       <MarigoldMark className="h-10 w-10 text-accent" />
-      <p className="text-body text-muted">এখানে এখনো কোনো লেখা নেই।</p>
+      <p className="text-body text-muted">
+        <T bn="এখানে এখনো কোনো লেখা নেই।" en="Nothing here yet." />
+      </p>
     </div>
   );
 }

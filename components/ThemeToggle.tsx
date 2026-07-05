@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useT } from "@/lib/i18n/useLang";
 
 // Theme toggle (FRONTEND §2.4 / §3.3). The no-flash inline script in layout.tsx
 // has already set data-theme before first paint; this client island only handles
@@ -20,6 +21,7 @@ export function ThemeToggle() {
   // Start null so SSR markup is theme-agnostic (no hydration mismatch); resolve
   // on mount from the same source the no-flash script used.
   const [theme, setTheme] = useState<Theme | null>(null);
+  const t = useT();
 
   useEffect(() => {
     const stored = (() => {
@@ -50,7 +52,9 @@ export function ThemeToggle() {
   }
 
   const isDark = theme === "dark";
-  const label = isDark ? "লাইট মোড চালু করুন" : "ডার্ক মোড চালু করুন";
+  const label = isDark
+    ? t("লাইট মোড চালু করুন", "Switch to light mode")
+    : t("ডার্ক মোড চালু করুন", "Switch to dark mode");
 
   return (
     <button

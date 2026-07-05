@@ -4,6 +4,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { getAllPosts, paginate, parsePage, buildSearchIndex } from "@/lib/content/repo";
 import { pageMetadata, websiteLd } from "@/lib/seo";
 import { SITE } from "@/lib/site";
+import { T } from "@/components/T";
 
 // Home / All-Posts index (REBUILD §4 Phase 1 #1 / FRONTEND §3.1 #1). SSG: the
 // content source is build-time data. `/` and `/blog` both resolve here (the
@@ -42,8 +43,13 @@ export default async function HomePage({
     <>
       <JsonLd data={websiteLd()} />
       <IndexView
-        title={HOME_TITLE}
-        intro={SITE.tagline}
+        title={<T bn={HOME_TITLE} en="All Posts" />}
+        intro={
+          <T
+            bn={SITE.tagline}
+            en="A Bengali literary blog — prose, serial fiction and essays."
+          />
+        }
         posts={items}
         basePath="/"
         page={current}
