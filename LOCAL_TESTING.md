@@ -103,8 +103,8 @@ From `lib/auth/users.mjs` (documented sample accounts — **not secrets**):
 
 | Role | Email | Password | Notes |
 |---|---|---|---|
-| **Author** | `tahsin@lostmodesty.com` | `raat-jaaga-1` | Full author (can use the editor). |
-| **Author** | `rumki@lostmodesty.com` | `modhyobortini-2` | Second author. |
+| **Author** | `lostmodesty@lostmodesty.com` | `raat-jaaga-1` | The sole author — লস্ট মডেস্টি. Every post is bylined to it (can use the editor). |
+| **Reader** | `rumki@lostmodesty.com` | `modhyobortini-2` | Reader (comments only — no longer an author). |
 | **Reader** | `nila@example.com` | `porano-shohor` | **Migrated** account (legacy password hash) — first login exercises the transparent re-hash path, no forced reset, no visible difference. |
 
 You can also **register** a brand-new reader at `/register` — it persists for the
@@ -126,14 +126,14 @@ bucket key, set by the middleware if it's enabled).
 | Home / index | `http://localhost:3000/` |
 | Blog index | `http://localhost:3000/blog` |
 | Index pagination | `http://localhost:3000/blog?page=2` |
-| Article | `http://localhost:3000/tahsin/raat-baarotar-por` |
-| Article (essay) | `http://localhost:3000/rumki/prem-rajniti-ar-modhyobortini` |
-| Series — part 1 | `http://localhost:3000/tahsin/haariye-jawa-shohor-porbo-1` |
-| Series — part 2 | `http://localhost:3000/tahsin/haariye-jawa-shohor-porbo-2` |
-| Series — final part | `http://localhost:3000/tahsin/haariye-jawa-shohor-shesh-porbo` |
+| Article | `http://localhost:3000/lostmodesty/raat-baarotar-por` |
+| Article (essay) | `http://localhost:3000/lostmodesty/prem-rajniti-ar-modhyobortini` |
+| Series — part 1 | `http://localhost:3000/lostmodesty/haariye-jawa-shohor-porbo-1` |
+| Series — part 2 | `http://localhost:3000/lostmodesty/haariye-jawa-shohor-porbo-2` |
+| Series — final part | `http://localhost:3000/lostmodesty/haariye-jawa-shohor-shesh-porbo` |
 | Category | `/category/golpo` · `/category/probondho` · `/category/love` |
-| Tag | `/tag/poetry` · `/tag/raat` · `/tag/smriti` · `/tag/rajniti` · `/tag/dhara` |
-| Author | `/author/tahsin` · `/author/rumki` |
+| Tag | `/tag/poetry` · `/tag/raat` · `/tag/smriti` · `/tag/rajniti` · `/tag/dhara` · `/tag/atatayi-bhalobasha` |
+| Author | `/author/lostmodesty` |
 | RSS feed | `http://localhost:3000/feed.xml` |
 | Sitemap | `http://localhost:3000/sitemap.xml` |
 | Robots | `http://localhost:3000/robots.txt` |
@@ -187,7 +187,7 @@ Logged-out visits to any of these redirect to `/login?next=<that path>`.
 
 - [ ] `/register` → create a new reader → you land logged in; header shows your name.
 - [ ] Restart isn't needed, but note a **server restart wipes** the new account.
-- [ ] Log in as **author** `tahsin@lostmodesty.com` / `raat-jaaga-1`.
+- [ ] Log in as **author** `lostmodesty@lostmodesty.com` / `raat-jaaga-1`.
 - [ ] Log in as **migrated reader** `nila@example.com` / `porano-shohor` — succeeds
       with no forced reset (legacy hash silently upgraded).
 - [ ] Wrong password is rejected with an inline error.
@@ -239,9 +239,9 @@ Logged-out visits to any of these redirect to `/login?next=<that path>`.
 - [ ] Opening `/notifications` **marks all read** — the bell badge clears.
 - [ ] With nothing to show, the empty state renders.
 
-> Tip for 6.6 / 6.7: log in as `tahsin` (author) in one browser and as a reader
+> Tip for 6.6 / 6.7: log in as `lostmodesty` (author) in one browser and as a reader
 > (register or `nila`) in another browser/incognito window, then comment on
-> tahsin's article from the reader to generate a notification/activity event.
+> a লস্ট মডেস্টি article from the reader to generate a notification/activity event.
 
 ### 6.8 Edge & error states
 
@@ -290,7 +290,7 @@ manual testing — skip them.
 | `localhost:3000` shows the **old live site** | The middleware is proxying to `OLD_ORIGIN`. Do **§2** (disable `middleware.ts` or force `NEW`/100). |
 | Logged-in state / new post / comment **disappeared** | Expected — in-memory stores reset on **server restart**. |
 | A just-published post 404s | Restart wiped it, or you reverted §2 mid-test and the router sent the URL to OLD. |
-| Editor redirects me away | You're logged in as a **reader**; the editor is author-only. Use `tahsin`/`rumki`. |
+| Editor redirects me away | You're logged in as a **reader**; the editor is author-only. Use `lostmodesty@lostmodesty.com`. |
 | Cookies not set / login won't stick | Cookies are `secure` only in production; in dev over `http://localhost` they should set fine — check you're on `localhost`, not a LAN IP. |
 | Port 3000 in use | `next dev -p 3001` (or set a free port). |
 

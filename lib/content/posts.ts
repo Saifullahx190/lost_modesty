@@ -17,16 +17,15 @@ import { postIdentity } from "./ids.mjs";
 // the app and the node tests can never disagree about which keys exist.
 // ───────────────────────────────────────────────────────────────────────────
 
+// Single editorial identity — every post is bylined লস্ট মডেস্টি (the team),
+// never an individual writer. The reader-facing author archive lives at
+// /author/lostmodesty; the author account in lib/auth/users.mjs carries the
+// matching authorSlug so the dashboard/editor resolve to this same identity.
 export const AUTHORS: Author[] = [
   {
-    slug: "tahsin",
-    name: "তাহসিন আহমেদ",
-    bio: "গদ্য আর ধারাবাহিক গল্প লেখেন। রাত জাগা, শহর আর হারিয়ে যাওয়া মানুষ নিয়ে।",
-  },
-  {
-    slug: "rumki",
-    name: "রুমকি বসু",
-    bio: "প্রবন্ধ ও স্মৃতিগদ্য। সম্পর্ক, রাজনীতি আর নিঃসঙ্গতার মাঝখানে দাঁড়িয়ে লেখা।",
+    slug: "lostmodesty",
+    name: "লস্ট মডেস্টি",
+    bio: "অশ্লীলতা আর নোংরামির বিরুদ্ধে আমাদের সমস্ত লেখা। সব লেখাই লস্ট মডেস্টি টিমের — কোনো আলাদা লেখকের নামে নয়।",
   },
 ];
 
@@ -37,11 +36,60 @@ export const CATEGORIES: Term[] = [
 ];
 
 export const TAGS: Term[] = [
+  // Tags used by the seed posts above (kept so those posts' archives resolve).
   { slug: "poetry", name: "কবিতা" },
   { slug: "raat", name: "রাত" },
   { slug: "smriti", name: "স্মৃতি" },
   { slug: "rajniti", name: "রাজনীতি" },
   { slug: "dhara", name: "ধারাবাহিক" },
+  // Subject tags carried over from the live site's "সব বিষয়" page so the composer
+  // can offer them for one-tap selection (FRONTEND §2.4 editor / topics hub §3.1).
+  // Display names are the Bengali subjects; slugs are URL-safe Latin (Bengali can't
+  // transliterate cleanly — REBUILD §3A). Near-duplicate legacy entries (trailing-
+  // dash variants, the English "BLOG") are merged into one canonical term.
+  { slug: "blog", name: "ব্লগ" },
+  { slug: "shobhotar-shongkot", name: "সভ্যতার সংকট" },
+  { slug: "reminder", name: "রিমাইন্ডার" },
+  { slug: "porn-masturbation-asokti", name: "ঝেঁটিয়ে বিদায় করুন বেয়াড়া পর্ন–মাস্টারবেশন আসক্তি" },
+  { slug: "phaguner-din-shesh-hobe-ekdin", name: "ফাগুনের দিন শেষ হবে একদিন" },
+  { slug: "onibarjo-joto-khoy", name: "অনিবার্য যত ক্ষয়" },
+  { slug: "mithyay-bosot", name: "মিথ্যায় বসত" },
+  { slug: "akasher-opare-akash", name: "আকাশের ওপারে আকাশ" },
+  { slug: "bhese-phelo-ei-karagar", name: "ভেসে ফেলো এই কারাগার" },
+  { slug: "bhenge-phelo-karagar", name: "ভেঙে ফেলো কারাগার" },
+  { slug: "nire-pherar-golpo", name: "নীড়ে ফেরার গল্প" },
+  { slug: "kurano-mukto", name: "কুড়ানো মুক্তো" },
+  { slug: "nil-ronger-ondhokar", name: "নীল রঙের অন্ধকার" },
+  { slug: "biye-niye-iniye-biniye", name: "বিয়ে নিয়ে ইনিয়ে বিনিয়ে" },
+  { slug: "amader-santan-porbo-dekhe", name: "আমাদের সন্তান পর্ব দেখে" },
+  { slug: "nil-noksha", name: "নীল নকশা" },
+  { slug: "campaign", name: "ক্যাম্পেইন" },
+  { slug: "tomar-chokhe-dekhechilam-amar-sarbonash", name: "তোমার চোখে দেখেছিলাম আমার সর্বনাশ" },
+  { slug: "premtal", name: "প্রেমতাল" },
+  { slug: "oshoni-shongket", name: "অশনি সংকেত" },
+  { slug: "he-amar-meye", name: "হে আমার মেয়ে" },
+  { slug: "chorabali", name: "চোরাবালি" },
+  { slug: "sholo", name: "ষোলো" },
+  { slug: "onupom-utthan", name: "অনুপম উত্থান" },
+  { slug: "pordar-opashe", name: "পর্দার ওপাশে" },
+  { slug: "nesha-jokhon-choti-golpo-pora", name: "নেশা যখন চটি গল্প পড়া" },
+  { slug: "ramadan", name: "রমাদান" },
+  { slug: "love-vs-arranged-marriage", name: "লাভ ম্যারেজ বনাম এরেঞ্জ ম্যারেজ" },
+  { slug: "bishe-bishkhoy", name: "বিষে বিষক্ষয়" },
+  { slug: "porn-myth", name: "পর্ন মিথ" },
+  { slug: "amader-kotha", name: "আমাদের কথা" },
+  { slug: "ekguchho-onubad", name: "একগুচ্ছ অনুবাদ" },
+  { slug: "hariye-jabar-bela", name: "হারিয়ে যাবার বেলা" },
+  { slug: "o-jokhon-porn-asokto", name: "ও যখন পর্ন আসক্ত" },
+  { slug: "sex-education", name: "সেক্স এডুকেশন" },
+  { slug: "kishor-magazine-shol", name: "কিশোর ম্যাগাজিন ষোল" },
+  { slug: "fantasy-kingdom", name: "ফ্যান্টাসি কিংডম" },
+  { slug: "bloge-notun", name: "ব্লগে নতুন" },
+  { slug: "chotto-buke-onek-betha", name: "ছোট্ট বুকে অনেক ব্যাথা" },
+  { slug: "shubhotar-byakoron", name: "শুভতার ব্যাকরণ" },
+  { slug: "bhalobashar-myth", name: "ভালোবাসার মিথ" },
+  { slug: "atmohotya", name: "আত্মহত্যা" },
+  { slug: "atatayi-bhalobasha", name: "আততায়ী ভালোবাসা" },
 ];
 
 export const SERIES: Series[] = [
@@ -157,6 +205,27 @@ const SEED_POSTS: Post[] = [
     body: [
       { type: "paragraph", text: LONG_1 + " " + LONG_2 },
       { type: "paragraph", text: "অতঃপর তাহারা সুখে শান্তিতে বসবাস করিতে থাকিলো — এমন কোনো লাইন এই গল্পে নেই। আছে শুধু একটা খোলা জানালা।" },
+    ],
+  },
+  // ── "আততায়ী ভালোবাসা" tag — starter post so the term resolves on /topics and
+  //    /tag/atatayi-bhalobasha. Placeholder body; replace with the real writing.
+  {
+    ...postIdentity("p-1006"),
+    title: "আততায়ী ভালোবাসা",
+    excerpt:
+      "যে ভালোবাসা আড়ালে ছুরি লুকিয়ে রাখে — কীভাবে চিনবে তাকে? (স্টার্টার লেখা — শিগগিরই সম্পূর্ণ হবে।)",
+    date: "2026-07-07T10:00:00+06:00",
+    categories: ["love"],
+    tags: ["atatayi-bhalobasha"],
+    body: [
+      {
+        type: "paragraph",
+        text: "কিছু ভালোবাসা আলো হয়ে আসে, আর কিছু আসে ছদ্মবেশে — হাসিমুখে, অথচ হাতের আড়ালে লুকানো ছুরি নিয়ে। এই লেখাটি সেই আততায়ী ভালোবাসার গল্প, যে আদরের নাম করে ধীরে ধীরে নিঃশেষ করে দেয়।",
+      },
+      {
+        type: "paragraph",
+        text: "এটি এই বিষয়ের সূচনা-লেখা। সম্পূর্ণ লেখাটি শিগগিরই এখানে যুক্ত হবে, ইন শা আল্লাহ।",
+      },
     ],
   },
 ];

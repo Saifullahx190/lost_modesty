@@ -20,7 +20,7 @@ at audit time.
 
 ```bash
 # one per representative URL from the §3A inventory (article, category, tag, author, home)
-curl -sL https://www.lostmodesty.com/tahsin/raat-baarotar-por -o data/snapshots/old/article-raat.html
+curl -sL https://www.lostmodesty.com/lostmodesty/raat-baarotar-por -o data/snapshots/old/article-raat.html
 ```
 
 ## Capturing NEW (the rebuilt page)
@@ -28,13 +28,13 @@ curl -sL https://www.lostmodesty.com/tahsin/raat-baarotar-por -o data/snapshots/
 Either from the static prerender after `npm run build`:
 
 ```bash
-cp ".next/server/app/tahsin/raat-baarotar-por.html" data/snapshots/new/article-raat.html
+cp ".next/server/app/lostmodesty/raat-baarotar-por.html" data/snapshots/new/article-raat.html
 ```
 
 …or from a running server (`npm run start`):
 
 ```bash
-curl -sL http://localhost:3000/tahsin/raat-baarotar-por -o data/snapshots/new/article-raat.html
+curl -sL http://localhost:3000/lostmodesty/raat-baarotar-por -o data/snapshots/new/article-raat.html
 ```
 
 ## Run
