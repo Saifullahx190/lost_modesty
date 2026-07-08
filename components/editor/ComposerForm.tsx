@@ -4,6 +4,7 @@ import { useActionState, useEffect, useRef, useState, useTransition, type ReactN
 import { Input } from "@/components/Input";
 import { Textarea } from "@/components/Textarea";
 import { Button } from "@/components/Button";
+import { TermPicker, type TermOption } from "@/components/editor/TermPicker";
 import {
   publishDraft,
   updateDraft,
@@ -21,6 +22,10 @@ interface ComposerFormProps {
   initial?: Partial<ComposerValues>;
   /** Existing cover src to preview until/unless a new file is chosen. */
   coverSrc?: string;
+  /** Site categories offered as one-tap chips in the composer (from getAllCategories). */
+  categoryOptions?: TermOption[];
+  /** Site tags offered as one-tap chips in the composer (from getAllTags). */
+  tagOptions?: TermOption[];
 }
 
 // Author composer (FRONTEND §2.4 editor / §3.2 Journey D). One <form>, two modes:
@@ -31,7 +36,14 @@ interface ComposerFormProps {
 // Degrades without JS: submit still works as a plain form POST; only the live
 // preview (an enhancement) needs JS. Fields are uncontrolled with defaultValue so
 // a failed submit keeps the author's draft intact (§3.3), no controlled-input churn.
-export function ComposerForm({ mode = "create", editId, initial, coverSrc }: ComposerFormProps) {
+export function ComposerForm({
+  mode = "create",
+  editId,
+  initial,
+  coverSrc,
+  categoryOptions = [],
+  tagOptions = [],
+}: ComposerFormProps) {
   const editing = mode === "edit";
   const [pubState, publishAction, publishing] = useActionState<ComposerState, FormData>(
     editing ? updateDraft : publishDraft,
@@ -104,6 +116,17 @@ export function ComposerForm({ mode = "create", editId, initial, coverSrc }: Com
           defaultValue={val("excerpt")}
           error={err("excerpt")}
         />
+        {/* Admin-set publish date (dateline). Optional: blank publishes with today's
+            date; on edit it's prefilled with the post's date, and changing it re-dates
+            the post. type=date → the browser's native picker; the value round-trips as
+            YYYY-MM-DD through normalizePublishDate. */}
+        <Input
+          label={editing ? "প্রকাশের তারিখ" : "প্রকাশের তারিখ (খালি রাখলে আজকের তারিখ)"}
+          name="date"
+          type="date"
+          defaultValue={val("date")}
+          error={err("date")}
+        />
 
         {/* Cover image (ঐচ্ছিক) — an author-uploaded hero shown atop the article and on
             its card. Optional; when present, alt text is required so it stays accessible
@@ -149,20 +172,30 @@ export function ComposerForm({ mode = "create", editId, initial, coverSrc }: Com
           />
         </div>
 
-        <div className="grid gap-2 sm:grid-cols-2">
-          <Input
-            label="বিভাগ (কমা দিয়ে)"
+        {/* Subject pickers — tap to select from the site's real categories/tags
+            (Bengali name shown, slug submitted). Each mirrors its selection into a
+            hidden input the publish action already reads, so the free-text slug
+            field is gone without changing the server contract. */}
+        <div className="grid gap-4 sm:grid-cols-2">
+          <TermPicker
+            label="বিভাগ"
             name="category"
-            placeholder="golpo, dhara"
+            options={categoryOptions}
             defaultValue={val("category")}
             error={err("category")}
+            hint="অন্তত একটি বিভাগ বেছে নিন।"
+            addLabel="নতুন বিভাগ"
+            addPlaceholder="তালিকায় না থাকলে স্লাগ লিখুন (যেমন: golpo)"
           />
-          <Input
-            label="ট্যাগ (কমা দিয়ে)"
+          <TermPicker
+            label="ট্যাগ"
             name="tags"
-            placeholder="raat, smriti"
+            options={tagOptions}
             defaultValue={val("tags")}
             error={err("tags")}
+            hint="যত খুশি ট্যাগ বেছে নিতে পারেন।"
+            addLabel="নতুন ট্যাগ"
+            addPlaceholder="তালিকায় না থাকলে স্লাগ লিখুন (যেমন: raat)"
           />
         </div>
 

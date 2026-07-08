@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getSessionUser } from "@/lib/auth/session";
-import { getPostById } from "@/lib/content/repo";
+import { getAllCategories, getAllTags, getPostById } from "@/lib/content/repo";
 import { postToComposerValues } from "@/lib/content/draft.mjs";
 import { pageMetadata } from "@/lib/seo";
 import { ComposerForm } from "@/components/editor/ComposerForm";
@@ -39,6 +39,11 @@ export default async function EditorPage({
   const editing = !!editPost && editPost.author === authorSlug;
   const initial = editing ? postToComposerValues(editPost!) : undefined;
 
+  // Subject chips for the composer — the site's real category/tag list, mapped to
+  // the {slug,name} the picker needs (Bengali name shown, slug submitted).
+  const categoryOptions = getAllCategories().map((t) => ({ slug: t.slug, name: t.name }));
+  const tagOptions = getAllTags().map((t) => ({ slug: t.slug, name: t.name }));
+
   return (
     <div className="mx-auto max-w-index px-4 py-10">
       <header className="mb-8 flex flex-col gap-2">
@@ -52,6 +57,8 @@ export default async function EditorPage({
         editId={editing ? editId : undefined}
         initial={initial}
         coverSrc={editing ? editPost!.cover?.src : undefined}
+        categoryOptions={categoryOptions}
+        tagOptions={tagOptions}
       />
     </div>
   );

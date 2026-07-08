@@ -29,6 +29,9 @@ public/uploads/
 
 # test / coverage output
 coverage/
+data/*.db
+data/*.db-shm
+data/*.db-wal
 
 # local tooling & editors
 .claude/settings.local.json

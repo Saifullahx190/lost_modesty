@@ -25,6 +25,7 @@
     "preflight": "npm run tokens:contrast && npm run redirect:build && npm run redirect:audit"
   },
   "dependencies": {
+    "better-sqlite3": "^12.11.1",
     "next": "^15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

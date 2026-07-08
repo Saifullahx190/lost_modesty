@@ -13,7 +13,12 @@ import {
   nextPostId,
   postHref,
 } from "@/lib/content/repo";
-import { validateDraft, buildDraftPost } from "@/lib/content/draft.mjs";
+import {
+  validateDraft,
+  buildDraftPost,
+  normalizePublishDate,
+  toDateInputValue,
+} from "@/lib/content/draft.mjs";
 import {
   decodeImageUpload,
   inlineUpload,
@@ -37,6 +42,9 @@ export interface ComposerValues {
   title: string;
   slug: string;
   excerpt: string;
+  /** Publish date as `YYYY-MM-DD`; empty means "use the default" (now on publish,
+   *  the existing date on edit). Lets an admin backdate/redate a post. */
+  date: string;
   category: string;
   tags: string;
   body: string;
@@ -72,6 +80,7 @@ function readValues(fd: FormData): ComposerValues {
     title: str(fd, "title"),
     slug: str(fd, "slug"),
     excerpt: str(fd, "excerpt"),
+    date: str(fd, "date"),
     category: str(fd, "category"),
     tags: str(fd, "tags"),
     body: str(fd, "body"),
@@ -137,7 +146,9 @@ export async function previewDraft(formData: FormData): Promise<PreviewResult> {
 
   const draft = buildDraftPost(input, {
     id: "draft-preview",
-    date: new Date().toISOString(),
+    // Honour the author's chosen date so the preview shows the real dateline;
+    // empty falls back to now (validation already rejected an unparseable value).
+    date: normalizePublishDate(values.date) ?? new Date().toISOString(),
     cover,
   });
   // Returned as an RSC node and rendered by the client — the same server
@@ -184,7 +195,9 @@ export async function publishDraft(
       ? await persistUpload(decoded, values.coverAlt.trim(), id)
       : undefined;
 
-  const post = buildDraftPost(input, { id, date: new Date().toISOString(), cover });
+  // Author-supplied publish date (an admin may backdate a post); empty → now.
+  const date = normalizePublishDate(values.date) ?? new Date().toISOString();
+  const post = buildDraftPost(input, { id, date, cover });
   addPost(post);
   // Make the new post show up on the cached listings, then send the author to its
   // live URL (which renders through the same ArticleView, Journey D).
@@ -253,8 +266,17 @@ export async function updateDraft(
     cover = { ...existing.cover, alt: values.coverAlt.trim() };
   }
 
-  const updated = buildDraftPost(input, { id: existing.id, date: existing.date, cover });
-  updated.updated = new Date().toISOString(); // dateModified moves; datePublished doesn't
+  // Publish date: an admin may re-date the post. Keep the original timestamp
+  // (its exact time-of-day, which the YYYY-MM-DD field can't carry) unless the
+  // chosen day actually differs — so a routine edit never silently shifts it.
+  const desiredDay = values.date.trim();
+  const date =
+    !desiredDay || desiredDay === toDateInputValue(existing.date)
+      ? existing.date
+      : normalizePublishDate(desiredDay) ?? existing.date;
+
+  const updated = buildDraftPost(input, { id: existing.id, date, cover });
+  updated.updated = new Date().toISOString(); // dateModified moves; datePublished is admin-set
   updatePost(updated);
 
   // Refresh the article + listings so the edit is visible; if the slug changed,

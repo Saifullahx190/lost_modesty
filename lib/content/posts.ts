@@ -1,5 +1,12 @@
 import type { Author, Post, Series, Term } from "./types";
 import { postIdentity } from "./ids.mjs";
+import {
+  PERSIST,
+  dbPostsEmpty,
+  dbLoadPosts,
+  dbUpsertPost,
+  dbDeletePost,
+} from "../db/index.mjs";
 
 // ───────────────────────────────────────────────────────────────────────────
 // LOCAL SAMPLE CONTENT — Phase 1 SSG source, standing in for the read-replica.
@@ -239,7 +246,16 @@ const SEED_POSTS: Post[] = [
 // content store (REBUILD §2 read-replica + dual-write/CDC) is shared by
 // construction, so this shim disappears with it.
 const g = globalThis as typeof globalThis & { __LM_POSTS__?: Post[] };
-export const POSTS: Post[] = (g.__LM_POSTS__ ??= SEED_POSTS);
+export const POSTS: Post[] = (g.__LM_POSTS__ ??= hydratePosts());
+
+/** In persist mode: seed the content store once (only when empty), then load
+ *  every row — so posts published in earlier runs survive restart. Otherwise:
+ *  the original in-memory SEED_POSTS, unchanged (tests + SSG behave as before). */
+function hydratePosts(): Post[] {
+  if (!PERSIST) return SEED_POSTS;
+  if (dbPostsEmpty()) for (const post of SEED_POSTS) dbUpsertPost(post, 1);
+  return dbLoadPosts() as Post[];
+}
 
 // ── Phase 5 editor writes (REBUILD §4 Phase 5) ──────────────────────────────
 // The editor's publish action appends here. In production this is an INSERT into
@@ -249,7 +265,18 @@ export const POSTS: Post[] = (g.__LM_POSTS__ ??= SEED_POSTS);
 // (dynamicParams default) — i.e. ISR, exactly the read-path rendering model.
 
 const seq = globalThis as typeof globalThis & { __LM_POST_SEQ__?: number };
-seq.__LM_POST_SEQ__ ??= 5001;
+seq.__LM_POST_SEQ__ ??= computePostSeq();
+
+/** Resume the p-#### sequence above anything already stored, never below the
+ *  5001 floor authored posts start at. */
+function computePostSeq(): number {
+  let max = 5000;
+  for (const post of POSTS) {
+    const m = /^p-(\d+)$/.exec(post.id);
+    if (m) max = Math.max(max, Number(m[1]));
+  }
+  return Math.max(5001, max + 1);
+}
 
 /** Fresh stable post id for a newly authored post. Kept in the p-#### space the
  *  identity registry (ids.mjs) uses; decoupled from the slug (REBUILD §3A).
@@ -262,6 +289,7 @@ export function nextPostId(): string {
  *  has already validated fields and confirmed slug uniqueness. */
 export function addPost(post: Post): void {
   POSTS.push(post);
+  dbUpsertPost(post);
 }
 
 /** Replace an existing post in place by id (editor "save"). No-op if the id is
@@ -270,7 +298,10 @@ export function addPost(post: Post): void {
  *  record identity — and everything that references it — does not. */
 export function updatePost(post: Post): void {
   const i = POSTS.findIndex((p) => p.id === post.id);
-  if (i >= 0) POSTS[i] = post;
+  if (i >= 0) {
+    POSTS[i] = post;
+    dbUpsertPost(post);
+  }
 }
 
 /** Remove a post by id (editor "delete"). Returns whether a row was removed.
@@ -279,5 +310,6 @@ export function deletePost(id: string): boolean {
   const i = POSTS.findIndex((p) => p.id === id);
   if (i < 0) return false;
   POSTS.splice(i, 1);
+  dbDeletePost(id);
   return true;
 }

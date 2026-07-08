@@ -8,6 +8,8 @@ import {
   parseFootnotes,
   validateDraft,
   buildDraftPost,
+  normalizePublishDate,
+  toDateInputValue,
 } from "../lib/content/draft.mjs";
 
 // Phase 5 editor — proves the composer produces the SAME structured Post shape the
@@ -74,6 +76,30 @@ test("validateDraft flags each missing/invalid field", () => {
     body: "একটি অনুচ্ছেদ।",
   });
   assert.deepEqual(ok, {});
+});
+
+test("normalizePublishDate: empty→undefined, invalid→null, YYYY-MM-DD→ISO, round-trips", () => {
+  assert.equal(normalizePublishDate(""), undefined); // caller supplies its own default
+  assert.equal(normalizePublishDate("   "), undefined);
+  assert.equal(normalizePublishDate("not-a-date"), null); // present but unparseable → error
+  assert.equal(normalizePublishDate("2024-03-11"), "2024-03-11T00:00:00.000Z");
+  // A stored ISO timestamp collapses to the date field and back to that same day.
+  assert.equal(toDateInputValue("2024-11-02T20:30:00+06:00"), "2024-11-02");
+  assert.equal(toDateInputValue("garbage"), "");
+});
+
+test("validateDraft flags a present-but-invalid date, ignores an empty one", () => {
+  const base = {
+    title: "শিরোনাম",
+    slug: "notun-lekha",
+    excerpt: "সংক্ষিপ্ত",
+    author: "tahsin",
+    category: "golpo",
+    body: "একটি অনুচ্ছেদ।",
+  };
+  assert.deepEqual(validateDraft({ ...base, date: "" }), {}); // optional
+  assert.deepEqual(validateDraft({ ...base, date: "2024-03-11" }), {}); // valid
+  assert.ok(validateDraft({ ...base, date: "31/02/2024" }).date); // invalid → error
 });
 
 test("buildDraftPost yields a well-formed Post the renderer/SEO builders accept", () => {
