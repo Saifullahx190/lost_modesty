@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { OfflineBanner } from "@/components/OfflineBanner";
+import { TrackView } from "@/components/analytics/TrackView";
 import { SITE } from "@/lib/site";
 import { metadataBase } from "@/lib/seo";
 import { NO_FLASH_LANG } from "@/lib/i18n/config";
@@ -57,6 +58,8 @@ export default function RootLayout({
         <Footer />
         {/* Connectivity affordance (§3.4) — quiet until the connection drops. */}
         <OfflineBanner />
+        {/* First-party pageview beacon — fires after paint, keeps SSG intact. */}
+        <TrackView />
       </body>
     </html>
   );

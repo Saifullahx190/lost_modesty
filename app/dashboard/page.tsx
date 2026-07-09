@@ -72,6 +72,7 @@ export default async function DashboardPage() {
         {user.role === "author" && (
           <>
             <DashLink href="/editor">নতুন লেখা</DashLink>
+            <DashLink href="/dashboard/analytics">ট্রাফিক বিশ্লেষণ</DashLink>
             {user.authorSlug && (
               <DashLink href={`/author/${user.authorSlug}`}>আপনার লেখাগুলো</DashLink>
             )}
