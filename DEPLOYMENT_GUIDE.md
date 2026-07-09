@@ -125,7 +125,7 @@ Docker `-e`, PaaS dashboard). No `.env.example` is committed; use this table:
 | Variable | Required | Purpose |
 |---|---|---|
 | `SESSION_SECRET` | **Yes, in production** | HMAC key that signs the `lm_sess` login cookie (`lib/auth/session.ts`). Without it the app silently falls back to a **publicly known dev secret** (`dev-only-secret-not-for-production`) — anyone could forge a session cookie, including an author session. |
-| `NEXT_PUBLIC_SITE_URL` | Yes, unless you own `www.lostmodesty.com` | Canonical origin used in `<link rel="canonical">`, OG/Twitter URLs, sitemap, robots and RSS. Defaults to `https://www.lostmodesty.com`. Set it to your real origin, e.g. `https://your-domain.com` — **before `npm run build`** (it is inlined at build time). |
+| `NEXT_PUBLIC_SITE_URL` | Yes, unless you own `www.lostmodesty.org` | Canonical origin used in `<link rel="canonical">`, OG/Twitter URLs, sitemap, robots and RSS. Defaults to `https://www.lostmodesty.org`. Set it to your real origin, e.g. `https://your-domain.com` — **before `npm run build`** (it is inlined at build time). |
 | `NODE_ENV` | Set by `next build`/`next start` automatically | In production it turns on the `Secure` flag for auth cookies — which means **you must serve over HTTPS** or login cookies won't stick. |
 | `OLD_ORIGIN` | No | Only read by the (disabled) strangler-fig middleware and the shadow-diff scripts. Irrelevant for a standalone deploy. |
 | `PORT` | No | Port for `next start` (default `3000`). You can also pass `npm start -- -p 8080`. |
@@ -379,7 +379,7 @@ in the seeded content.
 - [ ] `/blog` — index with pagination
 - [ ] `/lostmodesty/raat-baarotar-por` — article: title, cover, footnotes, comments block
 - [ ] `/category/golpo`, `/tag/raat`, `/author/lostmodesty` — listing pages
-- [ ] `/feed.xml`, `/sitemap.xml`, `/robots.txt` — 200, and URLs inside them use your `NEXT_PUBLIC_SITE_URL` (not `www.lostmodesty.com`)
+- [ ] `/feed.xml`, `/sitemap.xml`, `/robots.txt` — 200, and URLs inside them use your `NEXT_PUBLIC_SITE_URL` (not `www.lostmodesty.org`)
 - [ ] View source of an article: `<link rel="canonical">` and JSON-LD (`NewsArticle`) point at your origin
 - [ ] A garbage one-segment URL (e.g. `/nope`) → branded 404 page, HTTP status **404**
 - [ ] Known quirk (verified): a garbage *article-shaped* URL (e.g. `/nope/nope-nope`) shows the same branded 404 page but with HTTP status **200** — a "soft 404". The article route streams its loading shell (200) before `notFound()` fires. The response carries `noindex` so it won't be indexed, but status-code parity is a CP1/§3B item to fix before any SEO cutover

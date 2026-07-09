@@ -20,7 +20,7 @@ const LEDE =
 // অফিশিয়াল প্ল্যাটফর্মসমূহ (দাবিত্যাগ, ধারা ৩) — label + visible URL as the team
 // lists them + the real href. All external, so each opens in a new tab.
 const OFFICIAL_PLATFORMS: { label: string; href: string; text: string }[] = [
-  { label: "ওয়েবসাইট", href: "https://www.lostmodesty.com", text: "www.lostmodesty.com" },
+  { label: "ওয়েবসাইট", href: "https://www.lostmodesty.org", text: "www.lostmodesty.org" },
   { label: "ইউটিউব চ্যানেল", href: "https://www.youtube.com/lostmodesty", text: "youtube.com/lostmodesty" },
   { label: "ফেসবুক পেইজ", href: "https://www.fb.com/lostmodesty", text: "fb.com/lostmodesty" },
   { label: "ইনস্টাগ্রাম", href: "https://www.instagram.com/lostmodesty", text: "instagram.com/lostmodesty" },

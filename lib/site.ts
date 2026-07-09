@@ -6,7 +6,7 @@
  *  sitemap are correct even before the production env var is wired. Override with
  *  NEXT_PUBLIC_SITE_URL in each environment. No trailing slash. */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.lostmodesty.com"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.lostmodesty.org"
 ).replace(/\/$/, "");
 
 export const SITE = {

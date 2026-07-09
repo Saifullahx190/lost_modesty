@@ -123,7 +123,7 @@ export function renderOgImage({ title, kicker }: OgInput): ImageResponse {
 
         <div style={{ display: "flex", justifyContent: "space-between", borderTop: `2px solid ${C.border}`, paddingTop: 24 }}>
           <span style={{ fontSize: 26, color: C.muted }}>{SITE.nameLatin}</span>
-          <span style={{ fontSize: 26, color: C.muted }}>lostmodesty.com</span>
+          <span style={{ fontSize: 26, color: C.muted }}>lostmodesty.org</span>
         </div>
       </div>
     ),

@@ -9,7 +9,7 @@ import { TextLink } from "@/components/TextLink";
 // লস্ট মডেস্টির অফিসিয়াল চ্যানেল — label + visible URL (protocol stripped, as the
 // team lists them) + the real href. `mail` uses a mailto: link (external: false).
 const OFFICIAL_LINKS: { label: string; href: string; text: string; external: boolean }[] = [
-  { label: "ওয়েবসাইট", href: "https://www.lostmodesty.com", text: "www.lostmodesty.com", external: true },
+  { label: "ওয়েবসাইট", href: "https://www.lostmodesty.org", text: "www.lostmodesty.org", external: true },
   { label: "ইউটিউব", href: "https://www.youtube.com/lostmodesty", text: "youtube.com/lostmodesty", external: true },
   { label: "ফেসবুক", href: "https://www.facebook.com/lostmodesty", text: "facebook.com/lostmodesty", external: true },
   { label: "ইনস্টাগ্রাম", href: "https://www.instagram.com/lostmodesty", text: "instagram.com/lostmodesty", external: true },
