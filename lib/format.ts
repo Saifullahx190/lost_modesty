@@ -1,6 +1,7 @@
 // Formatting helpers. Bengali-first (FRONTEND §1.1 primary locale bn).
 
 const bnDate = new Intl.DateTimeFormat("bn-BD", {
+  weekday: "long",
   year: "numeric",
   month: "long",
   day: "numeric",
