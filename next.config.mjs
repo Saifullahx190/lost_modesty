@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+experimental: {
+    serverActions: {
+      allowedOrigins: ['lostmodesty.org', 'www.lostmodesty.org'],
+bodySizeLimit: '10mb',
+    },
+  },
   reactStrictMode: true,
   // SSG/ISR for read path, SSR for auth/dashboard/editor — rendering strategy per
   // REBUILD_PLAN.md §2. Per-route rendering is set at the route level (Phase 1+),
@@ -16,7 +22,7 @@ const nextConfig = {
     // Real raster covers from the CDN won't need this — revisit when the image
     // origin is wired.
     dangerouslyAllowSVG: true,
-    contentDispositionType: "attachment",
+    contentDispositionType: "inline",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async redirects() {
