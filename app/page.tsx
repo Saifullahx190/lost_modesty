@@ -44,12 +44,6 @@ export default async function HomePage({
       <JsonLd data={websiteLd()} />
       <IndexView
         title={<T bn={HOME_TITLE} en="All Posts" />}
-        intro={
-          <T
-            bn={SITE.tagline}
-            en="A Bengali literary blog — prose, serial fiction and essays."
-          />
-        }
         posts={items}
         basePath="/"
         page={current}
