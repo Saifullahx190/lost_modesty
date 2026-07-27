@@ -15,7 +15,10 @@ bodySizeLimit: '10mb',
     // Real remote patterns (the live CDN host for cover images) are filled in
     // Phase 1 once the image origin is confirmed from the read-replica/inventory.
     formats: ["image/avif", "image/webp"],
-    remotePatterns: [],
+    remotePatterns: [
+      { protocol: "https", hostname: "lostmodesty.org" },
+      { protocol: "https", hostname: "www.lostmodesty.org" },
+    ],
     // Phase-1 sample covers are local SVGs standing in for real raster covers
     // (lib/content/posts). next/image only serves SVG through the optimizer with
     // this flag; the CSP sandbox neutralizes any script/interaction in the SVG.
