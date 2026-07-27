@@ -48,7 +48,7 @@ function BlockView({ block }: { block: Block }) {
       return (
         <figure className="my-2">
           <div className="relative aspect-cover w-full overflow-hidden rounded-lg border border-border bg-bg-subtle">
-            <Image {...coverProps(img, INLINE_SIZES)} />
+            <Image {...coverProps(img, INLINE_SIZES)} alt={img.alt} />
           </div>
           {block.caption && (
             <figcaption className="mt-2 text-caption text-muted">{block.caption}</figcaption>

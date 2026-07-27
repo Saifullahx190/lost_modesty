@@ -27,7 +27,7 @@ export function ArticleHeader({ post }: { post: Post }) {
         <figure className="relative aspect-cover w-full overflow-hidden rounded-lg border border-border bg-bg-subtle">
           {/* Hero is the LCP element → priority (§2.6). Meaningful alt is preserved
               from the content ref (§1.3), unlike the decorative card cover. */}
-          <Image {...coverProps(cover, HERO_SIZES, true)} />
+          <Image {...coverProps(cover, HERO_SIZES, true)} alt={cover.alt} />
         </figure>
       )}
     </header>
