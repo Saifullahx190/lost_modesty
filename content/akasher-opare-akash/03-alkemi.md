@@ -116,26 +116,26 @@ How to tell...- tinyurl.com/4xsOhnnt
 [ws] Beautiful Faces Trigger Reward Center of Brain, ABC News-
 tinyurl.com/34frurf9
 [80] Love, sex and the male brain, CNN,March 25, 2010- https://archive.is/5ZEEQ
-[8১] Durante, K. M., Griskevicius, V., Hill, ও. E., Perilloux, C., & Li, N. P. (2011).
+[à§ª১] Durante, K. M., Griskevicius, V., Hill, ও. E., Perilloux, C., & Li, N. P. (2011).
 Ovulation, female competition, and product choice: Hormonal influences on
 consumer behavior. Journal of Consumer Research, 37(6).
-[8২] Why Science Says Men Go for Women with Hourglass Figures, menshealth.
+[à§ª২] Why Science Says Men Go for Women with Hourglass Figures, menshealth.
 com, Jun 18,2019- tinyurl.com/d2xzfwmv
-[8৩] Dixson, 9. J., et al. (2011). Eye tracking of men’s preferences for female
+[à§ª৩] Dixson, 9. J., et al. (2011). Eye tracking of men’s preferences for female
 breast size and areola pigmentation. Archives of Sexual Behavior, 40(1).
 [88] Men and the Power of the Visual, PragerU, - tinyurl.com/y3c9yvy4
-[8৫] Hughes, S. M., Dispenza, F., & Gallup Jr, 0. 0. (2004). Ratings of voice
+[à§ª৫] Hughes, S. M., Dispenza, F., & Gallup Jr, 0. 0. (2004). Ratings of voice
 attractiveness predict sexual behavior and body configuration. Evolution and
 Human Behavior, 25(5), 295-304.
 O’Connor, J. J., Re, D. E., & Feinberg, D. R. (2011). Voice pitch influences
 perceptions of sexual infidelity. Evolutionary Psychology, 9(1).
-[8৬] Hirsch, A., & Gruss, J. (1999). Human male sexual response to olfactory
+[à§ª৬] Hirsch, A., & Gruss, J. (1999). Human male sexual response to olfactory
 stimuli. J Neurol Orthop Med Surg, 19, 14-19.
 Scents That (Really!) Seduce Him, Cosmopolitoan- tinyurl.com/mz92r4h4
-[8৭] এরকম আরও অনেক গবেষণা রয়েছে। সেগুলোর জন্য দেখা যেতে পারে চিকিৎসক, লেখক
+[à§ª৭] এরকম আরও অনেক গবেষণা রয়েছে। সেগুলোর জন্য দেখা যেতে পারে চিকিৎসক, লেখক
 ও অনলাইন এক্টিভিস্ট ডা. শামসুল আরেফিন শক্তি রচিত “মানসাংক” বইটি। আমাদের এই লেখার
 বেশ কিছু তথ্য মানসাংক বইটি থেকে নেওয়া হয়েছে।
-[8৮] Elliot, A. J., & Niesta, D. (2008). Romantic red: red enhances men’s attraction
+[à§ª৮] Elliot, A. J., & Niesta, D. (2008). Romantic red: red enhances men’s attraction
 to women. Journal of personality and social psychology, 95(5).
 The Red-Dress Effect Men see women wearing red as more open to romantic
 advances, science.org- tinyurl.com/mhd5vkh5
@@ -145,7 +145,7 @@ tinyurl.com/2p99pr3w
 co.uk - tinyurl.com/yc6s3e4v
 Do Men Like a Woman in Red Lipstick? The Answer May Surprise You, stylecaster.
 com,Sep 04, 2013- tinyurl.com/yckzbvw8
-[8৯] Guéguen, N. (2012). Does red lipstick really attract men? An evaluation in a
+[à§ª৯] Guéguen, N. (2012). Does red lipstick really attract men? An evaluation in a
 bar. International Journal of Psychological Studies, 4(2), 206.
 [৫০] এটা ইচ্ছাকৃতভাবে পুরুষদের পুরুষদের প্রলুন্ধ করার জন্য হতে পারে, অথবা এমনিই নিজের
 ভালোলাগায় পরা হতে পারে। কিন্তু নারী পুরুষদের প্রলুব্ধ করতে না চাইলেও পুরুষরা সব সময় একই
@@ -162,7 +162,7 @@ the social psychology of dress. Fashion and Textiles, 1(1)
 [৫২] “...তোমরা যদি আল্লাহকে ভয় করো, তাহলে পরপুরুষের সঙ্গে আকর্ষণীয় ভঙ্গিতে কথা বলো
 না, যাতে যার অন্তরে ব্যাধি আছে সে প্রলুত্ধ হয়।...' [সূরা আহ্যাব, আয়াত ৩২]
 Woman'’s Voice in Quran, Islamweb - tinyurl.com/Sbx6vwyf
-নবী (৯) বলেছেন - প্রত্যেক চোখই ব্যভিচারী। আর মহিলা যদি (কোনো প্রকার) সুগন্ধি ব্যবহার
+নবী (ﷺ) বলেছেন - প্রত্যেক চোখই ব্যভিচারী। আর মহিলা যদি (কোনো প্রকার) সুগন্ধি ব্যবহার
 করে কোনো (পুরুষের) মজলিসের পাশ দিয়ে অতিক্রম করে, তবে সে ব্যভিচারিণী।” তিরমিযী
 ২৭৮৬, আবু দাউদ ৪১৭৩ (আংশিক), সহীহুল জামে ৪৫৪০। ইমাম তিরমিযী হাদিসটিকে হাসান
 সহীহ বলেছেন।
@@ -170,7 +170,7 @@ Woman'’s Voice in Quran, Islamweb - tinyurl.com/Sbx6vwyf
 হবার মাধ্যমে বালেগ বা প্রাপ্তবয়স্ক হবার সময় থেকে। শরীআহ অনুযায়ী (স্বপ্নদোষ, মাসিক ইত্যাদি)
 বালেগ হওয়ার আলামত প্রকাশ হওয়ার পর থেকে তার ওপর সাবালকের বিধান প্রয়োগ হবে। এবং
 সাধারণত: এই সময় তার মধ্যে যৌনতার প্রতি আগ্রহ সৃষ্টি হয়। কিন্তু সবার ক্ষেত্রে ব্যাপারটা এক রকম
-[৫8] নবী (#8) বলেছেন - “হে যুবকের দল, তোমারদের মধ্যে যে বিবাহের সামর্থ রাখে সে যেন
+[৫à§ª] নবী (ﷺ) বলেছেন - “হে যুবকের দল, তোমারদের মধ্যে যে বিবাহের সামর্থ রাখে সে যেন
 বিবাহ করে। (বুখারী ৫০৬৫, মুসলিম ১৪০০ TF, ৩২৬৮)”
 [৫৫] সূরা বনী ইসরাঈল, ১৭:৩২
 [৫৬] লাভ ম্যারেজ, শায়খ আলী তানতাউয়ী, বইঘর পাবলিকেশন, পৃষ্ঠা ১৫-১৬

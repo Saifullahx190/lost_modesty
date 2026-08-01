@@ -68,7 +68,7 @@
 [২৭২] সূরা আয যারিয়াত, ৫১:৫৬
 [২৭৩] Al-’Ubudiyyah, Ibn Qayyim al-Jawziyyah Rahimahullah, sunnahonline.
 com- tinyurl.com/3s4rerez
-[২৭৪8] Al-’Ubudiyyah: Being a True Slave of Allah, Ibn Taymiyyah Rahimahullah,
+[২৭৪à§ª] Al-’Ubudiyyah: Being a True Slave of Allah, Ibn Taymiyyah Rahimahullah,
 sunnahonline.com- tinyurl.com/4msrb8y7
 [২৭৫] উমার ইবনুল খাত্তাবের (রা.) জীবনী, শাইখ আনওয়ার বিন নাসির আল-ইয়ামানী
 [২৭৬] সূরা আত-তাওবাহ, ৯:৬২
